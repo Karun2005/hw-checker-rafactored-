@@ -7,8 +7,13 @@ import java.io.*;
 
 class MarksClient {
   public static void main(String[] args) {
-  
-    
+    boolean useEquationSover = validateStringInput();
+    if(useEquationSover){
+      System.out.println("Using EQ Solver");
+    }
+    else{
+      System.out.println("Not equation solver");
+    }
   }
     
     
