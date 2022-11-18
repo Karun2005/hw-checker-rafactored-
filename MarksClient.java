@@ -19,6 +19,7 @@ class MarksClient {
     else{
       System.out.println("Not equation solver");
     }
+    userInput();
   }
     
     
