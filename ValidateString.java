@@ -1,6 +1,10 @@
 import java.util.Scanner;
 
 class ValidateString {
+    /*
+     *Asks the user wheter they want to compare the student response with either the answer file or by making the computer solve the questions
+     *@return A or B: A is if the user wants to compare using the answer sheet, B if the user wants to compare using the equation solver
+     */
     public boolean stringInput(){
         System.out.println("Welcome to Student Marking AI V5.3");
         System.out.println("Select one of the options below to continue");
