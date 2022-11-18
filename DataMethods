@@ -1,3 +1,67 @@
 class DataMethods{
+    int columnsInStudentReponse = getFileColumnsNumber(file); 
+    String [][] data = ReadFileInto2DArray(file,columnsInStudentReponse); 
+    
+    // Methods
+    
+      public static String[][] ReadFileInto2DArray(String filepath, int amountOfFields){
+    List<String> recordsList = new ArrayList <String>();
 
+    //String delimiter = ",";
+    String currentLine;
+
+    try{
+      FileReader fr = new FileReader(filepath);
+      BufferedReader br = new BufferedReader(fr);
+
+      while((currentLine = br.readLine()) != null){
+        recordsList.add(currentLine);
+      }
+
+      int recordCount = recordsList.size();
+
+      String arrayToReturn [][] = new String[recordCount][amountOfFields];
+
+    Scanner sc = new Scanner(new BufferedReader(new FileReader(filepath)));
+    while(sc.hasNextLine()) {
+      for (int i=0; i<arrayToReturn.length; i++) {
+        String[] line = sc.nextLine().trim().split(","); // Splits the string by seperating them by the delimiter 
+        for (int j=0; j<line.length; j++) {
+          arrayToReturn[i][j] = line[j];
+        }
+      }
+    }
+    return arrayToReturn;
+    }
+    catch(Exception e){
+      System.out.println(e);
+      return null;
+    }
+  }
+
+  public static int getFileColumnsNumber(String filename) {
+    File file = new File(filename);
+    Scanner scanner;
+    try {
+      scanner = new Scanner(file);
+    }
+    catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return -1;
+    }
+    int number = 0;
+    if (scanner.hasNextLine()) {
+      number = scanner.nextLine().split(",").length; // It counts the number of columns by separating the strings after the comma and then counting the number of strings
+    }
+    scanner.close();
+    return number;
 }
+    
+    
+    
+   
+   
+   
+ 
+   
+} // Test
