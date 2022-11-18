@@ -1,44 +1,47 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.util.ArrayList;
 class DataMethods{
-    int columnsInStudentReponse = getFileColumnsNumber(file); 
-    String [][] data = ReadFileInto2DArray(file,columnsInStudentReponse); 
-    
     // Methods
-    
-      public static String[][] ReadFileInto2DArray(String filepath, int amountOfFields){
-    List<String> recordsList = new ArrayList <String>();
+    public static String[][] ReadFileInto2DArray(String filepath, int amountOfFields){
+        ArrayList<String> recordsList = new ArrayList <String>();
 
-    //String delimiter = ",";
-    String currentLine;
+        //String delimiter = ",";
+        String currentLine;
 
-    try{
-      FileReader fr = new FileReader(filepath);
-      BufferedReader br = new BufferedReader(fr);
+        try{
+        FileReader fr = new FileReader(filepath);
+        BufferedReader br = new BufferedReader(fr);
 
-      while((currentLine = br.readLine()) != null){
-        recordsList.add(currentLine);
-      }
-
-      int recordCount = recordsList.size();
-
-      String arrayToReturn [][] = new String[recordCount][amountOfFields];
-
-    Scanner sc = new Scanner(new BufferedReader(new FileReader(filepath)));
-    while(sc.hasNextLine()) {
-      for (int i=0; i<arrayToReturn.length; i++) {
-        String[] line = sc.nextLine().trim().split(","); // Splits the string by seperating them by the delimiter 
-        for (int j=0; j<line.length; j++) {
-          arrayToReturn[i][j] = line[j];
+        while((currentLine = br.readLine()) != null){
+            recordsList.add(currentLine);
         }
-      }
-    }
-    return arrayToReturn;
-    }
-    catch(Exception e){
-      System.out.println(e);
-      return null;
-    }
-  }
 
+        int recordCount = recordsList.size();
+
+        String arrayToReturn [][] = new String[recordCount][amountOfFields];
+
+        Scanner sc = new Scanner(new BufferedReader(new FileReader(filepath)));
+        while(sc.hasNextLine()) {
+            for (int i=0; i<arrayToReturn.length; i++) {
+                String[] line = sc.nextLine().trim().split(","); // Splits the string by seperating them by the delimiter 
+                for (int j=0; j<line.length; j++) {
+                arrayToReturn[i][j] = line[j];
+                }
+            }
+        }
+        return arrayToReturn;
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
   public static int getFileColumnsNumber(String filename) {
     File file = new File(filename);
     Scanner scanner;
@@ -55,13 +58,5 @@ class DataMethods{
     }
     scanner.close();
     return number;
+    }
 }
-    
-    
-    
-   
-   
-   
- 
-   
-} // Test
