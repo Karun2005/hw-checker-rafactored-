@@ -30,5 +30,21 @@ public class userInput {
     input.close();
     return userInput.absolutePath;
   }
+  public static Boolean searchDir(String pathName, String fileName) {
+    File path = new File(pathName);
+    for (File file : path.listFiles()) {
+      if (file.isDirectory()) {
+        if (searchDir(file.getAbsolutePath(), fileName)) {
+          return true;
+        }
+      } else {
+        if (file.getName().equals(fileName)) {
+          userInput.absolutePath = file.getAbsolutePath();
+          return true;
+        }
+      }
+    }
+    return false;
+  }
   
 }
