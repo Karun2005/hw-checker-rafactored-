@@ -75,5 +75,108 @@ class DataMethods{
         scanner.close();
         return number;
     }
+    
+  /**
+   * Adds all the answers from the answer key file into a 1D array
+   * @param filepath the name of the file
+   * @return arrayToReturn the 1D array
+   * @throws Exception e;
+   */
+  public static String[] oneDArray(String filepath){
+    List<String> recordsList = new ArrayList <String>();
+
+    String currentLine;
+
+    try{
+      FileReader fr = new FileReader(filepath);
+      BufferedReader br = new BufferedReader(fr);
+
+      // Counts the number of questions
+      while((currentLine = br.readLine()) != null){
+        br.readLine();
+        recordsList.add(currentLine);
+        br.readLine();
+      }
+      br.close();
+
+      // Stores the amount of questions (size of the array) into a variable
+      int recordCount = recordsList.size();
+
+      // Creates a 1D array containing all the answers from the answer key  
+      String arrayToReturn [] = new String[recordCount];
+
+
+      // Adds all the answers into the 1D array
+      BufferedReader br2 = null;
+      br2 = new BufferedReader(new FileReader(filepath));
+      String contentLine;
+      for (int i = 0; i < recordCount; i++) { 
+        br2.readLine(); // It skips the heading (Q1, etc)
+        contentLine = br2.readLine();
+        arrayToReturn[i] = contentLine; 
+        br2.readLine(); // It skips the blank string in between questions
+      }
+
+      // Returns the array
+      return arrayToReturn;
+    }
+    catch(Exception e){
+      System.out.println(e);
+      return null;
+    }
+  }
+    
+  /**
+   * Add
+   */
+  public static void ComapringAndCreatingCSVFile(String [][] responseArr, String [] ansArr){
+
+    int lengthOfStudentResponses = responseArr.length;
+    int lengthOfAnswers = ansArr.length;
+
+    String[][] studentResponseIn2DArray = new String[lengthOfStudentResponses][5]; // Row is the length of the 2D array that contains the students' responses. Column is 5 because that is where the answer to questions start
+    
+    // Adds the answers from the response 2D array to the studentResponseIn2DArray 2D array
+    for(int i = 0; i < lengthOfStudentResponses; i++) {
+      for(int j = 0; j < 4; j++) {
+        studentResponseIn2DArray[i][j] = responseArr[i][j]; 
+      }
+    }
+
+    // Comparing the responses to the answer key 
+    for(int i = 0; i < lengthOfStudentResponses; i++) { // Goes by rows
+      int grade = 0;
+      for(int j = 0; j < lengthOfAnswers; j++) { // Goes by column
+        if(ansArr[j].equals(responseArr[i][j+4])) {
+          grade = grade+1; // "grade" restes after every question is checked
+        }
+      }
+      studentResponseIn2DArray[i][4] = String.valueOf(grade); // Stores the string grade into the array
+    }
+
+    //
+    String fileName = "StudentFinalGrade.csv";
+    try {
+      File file = new File(fileName);
+      FileWriter gradeFile = new FileWriter(file);
+      for(int x = 0; x < studentResponseIn2DArray.length;x++) {
+        gradeFile.write(String.join(",",studentResponseIn2DArray[x]) + "/" + ansArr.length + "\n");
+        //Combines the row of the new 2D array into one line in the new File
+      }
+      gradeFile.close();
+    } 
+    catch (IOException e) {
+      System.out.println("Error");
+      e.printStackTrace();
+    }
+    System.out.println("Finished Grading \nCheck " + fileName + " to see the results");
+  }
+    
+    
+   
+    
+    
+    
+    
 
 }
