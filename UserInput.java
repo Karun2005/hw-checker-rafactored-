@@ -24,12 +24,18 @@ public class UserInput {
   public static String verifyFile(String fileType) {
     Scanner input = new Scanner(System.in);
     Boolean fileFound = false;
+    int count = 0;
     while (true) {
       if (fileFound) {
         System.out.println("FILE FOUND! ");
         break;
       } 
       else {
+        if(count>0){
+          System.out.println();
+          System.out.println("Invalid file!");
+        }
+        count++;
         String fileName = "";
         System.out.print("Please enter " + fileType + " filename: ");
         fileName = input.nextLine();
