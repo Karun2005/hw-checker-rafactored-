@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class userInput {
+public class UserInput {
   static String absolutePath = "";
   
   /*
@@ -38,7 +38,7 @@ public class userInput {
       }
     }
     input.close();
-    return userInput.absolutePath;
+    return absolutePath;
   }
   /*
   *searches through all the files. 
@@ -58,7 +58,7 @@ public class userInput {
         }
       } else {
         if (file.getName().equals(fileName)) {
-          userInput.absolutePath = file.getAbsolutePath();
+          absolutePath = file.getAbsolutePath();
           return true;
         }
       }
