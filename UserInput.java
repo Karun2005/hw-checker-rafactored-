@@ -7,12 +7,12 @@ public class UserInput {
   /*
   *asks, receives and validates files entered by user
   */
-  public static void main(String args[]) {
+  //public static void main(String args[]) {
 
-    verifyFile("studentData");
-    verifyFile("response");
-    verifyFile("answer");
-    verifyFile("question");
+    //verifyFile("studentData");
+    //verifyFile("response");
+    //verifyFile("answer");
+    //verifyFile("question");
   }
   /*
   *based on if file exists, or not.
