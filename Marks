@@ -1,3 +1,4 @@
+//exports the final scores of each students onto a csv file that can be accessible to users 
 interface Marks {
     public void exportMarks();
 }
