@@ -1,3 +1,4 @@
+//class that runs if user chooses to compare the student response and answer by using the answer file
 class WithoutSolver extends DataMethods implements Marks {
 
     @Override
