@@ -14,6 +14,7 @@ public class UserInput {
     //verifyFile("answer");
     //verifyFile("question");
   }
+
   /*
   *based on if file exists, or not.
   *it's either going to prompt the user to reenter another file name
@@ -46,6 +47,7 @@ public class UserInput {
     input.close();
     return absolutePath;
   }
+
   /*
   *searches through all the files. 
   *Determines if what it's searching is a directory of file
@@ -70,6 +72,5 @@ public class UserInput {
       }
     }
     return false;
-  }
-  
+  }  
 }
