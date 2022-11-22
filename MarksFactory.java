@@ -1,5 +1,9 @@
-//based on if user chose to compare using the answer file or solving the questions, the designated action will be taken to complete the task
 class MarksFactory {
+    /**
+     * Creates a class based on the user input
+     * @param useEquationSolver
+     * @return a class that implements the Marks interface
+     */
     public Marks getMarks(boolean useEquationSolver){
         if(useEquationSolver){
             return new WithSolver();
