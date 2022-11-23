@@ -8,8 +8,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 class DataMethods{
     
-    static String absolutePath = "";
-    static Scanner reader = new Scanner(System.in);
+    private static String absolutePath = "";
+    private static Scanner reader = new Scanner(System.in);
   
     /**
      * Verifies if a file is on the users computer
@@ -45,7 +45,7 @@ class DataMethods{
        * @param fileName Name of the file
        * @return Boolean based on if the file is found
        */
-      protected Boolean searchDir(String pathName, String fileName) {
+      protected boolean searchDir(String pathName, String fileName) {
         File path = new File(pathName);
         for (File file : path.listFiles()) {
           if (file.isDirectory()) {
@@ -213,18 +213,18 @@ class DataMethods{
       protected void finalGrade(String[][] arr, int lengthOfAns) {
         String fileName = "StudentFinalGrade.csv";
         try {
-          File file = new File(fileName);
-          FileWriter gradeFile = new FileWriter(file);
-          for(int x = 0; x < arr.length;x++) {
+          File file = new File(fileName); // Declare the file
+          FileWriter gradeFile = new FileWriter(file); // Open the file for writing
+          for(int x = 0; x < arr.length;x++) { // For loop populates the csv file with the array containing the final marks
             gradeFile.write(String.join(",",arr[x]) + "/" + lengthOfAns + "\n");
             //Combines the row of the new 2D array into one line in the new File
           }
-          gradeFile.close();
+          gradeFile.close(); // Close the file
         } 
-        catch (IOException e) {
+        catch (IOException e) { // Catch exception
           System.out.println("Error");
           e.printStackTrace();
         }
-        System.out.println("Finished Grading \nCheck " + fileName + " to see the results");
+        System.out.println("Finished Grading \nCheck " + fileName + " to see the results"); // Tell the user we are done grading
       }
 }
